@@ -40,14 +40,14 @@ public class EmpController {
 	
 	// 등록처리
 	@PostMapping("empInsert")
-	public String empInsertProc(EmpVO vo) {
+	public String empInsertProc(EmpVO vo, HttpServletRequest request) {
 		empDAO.insert(vo);
 		return "redirect:empInsert";
 	}
 	
 	// 수정폼
 	// 확인: http://localhost/yedam/empUpdate?employee_id=사원번호 
-	@PostMapping("/empUpdate")
+	@GetMapping("/empUpdate")
 	public String empUpdate(HttpServletRequest request) {
 		String empId = request.getParameter("employee_id");
 		request.setAttribute("empVo", empDAO.selectOne(empId));
@@ -58,10 +58,10 @@ public class EmpController {
 	}
 	
 	// 수정처리
-	@GetMapping("/empUpdate")
+	@PostMapping("/empUpdate")
 	public String empUpdateProc(EmpVO vo) {
 		empDAO.update(vo);
-		return "emp/empList";
+		return "redirect:empList";
 	}
 	// 이메일체크
 	

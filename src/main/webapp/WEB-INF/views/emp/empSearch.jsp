@@ -8,12 +8,15 @@
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-	$(function(){
+	$(function(){ // 클릭 시 해당 직원의 매니저 id, name 리턴
 		$('.btnSelect').on('click',function(){
 			var empid = $(this).closest('div').find('span').eq(0).html();
-			var firstName ="$('.row').children().eq(1).html()";
-			opener.document.frm.manager_id=empid;
-			$(opener.document).find('[name=manager_id]').val(empid);
+			var firstName =$(this).closest('div').find('span').eq(1).html();
+			//opener.document.frm.manager_id= empid; // 방법.01
+			//opener.document.frm.manager_name= firstName;
+			
+			$(opener.document).find('[name=manager_id]').val(empid); // 방법.02
+			$(opener.document).find('[name=manager_name]').val(firstName);
 			window.close();
 		});
 	});

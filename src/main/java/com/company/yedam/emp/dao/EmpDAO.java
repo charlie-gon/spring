@@ -39,7 +39,7 @@ public class EmpDAO {
 					+ "COMMISSION_PCT,"
 					+ "MANAGER_ID,"
 					+ "DEPARTMENT_ID "
-					+ "FROM EMPLOYEES ORDER BY FIRST_NAME";
+					+ "FROM EMPLOYEES ORDER BY EMPLOYEE_ID";
 			pstmt = conn.prepareStatement(sql);
 			// execute
 			ResultSet rs = pstmt.executeQuery();
@@ -50,6 +50,9 @@ public class EmpDAO {
 				vo.setLast_name(rs.getString("last_name"));
 				vo.setSalary(rs.getString("salary"));
 				vo.setHire_date(rs.getDate("hire_date"));
+				vo.setEmail(rs.getString("email"));
+				vo.setDepartment_id(rs.getString("department_id"));
+				
 				list.add(vo);
 			}
 		}catch(Exception e) {
@@ -153,18 +156,20 @@ public class EmpDAO {
 		// 2. statement(구문)
 			String sql = "INSERT INTO EMPLOYEES "
 							+ "(EMPLOYEE_ID,"
+							+ "FIRST_NAME,"
 							+ "LAST_NAME,"
 							+ "EMAIL,"
 							+ "HIRE_DATE,"
 							+ "JOB_ID) "
-							+ "VALUES(?,?,?,?,?)";
+							+ "VALUES(?,?,?,?,?,?)";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 		// 3. execute(실행)
 			pstmt.setString(1, vo.getEmployee_id());
-			pstmt.setString(2, vo.getLast_name());
-			pstmt.setString(3, vo.getEmail());
-			pstmt.setDate(4, vo.getHire_date());
-			pstmt.setString(5, vo.getJob_id());
+			pstmt.setString(2, vo.getFirst_name());
+			pstmt.setString(3, vo.getLast_name());
+			pstmt.setString(4, vo.getEmail());
+			pstmt.setDate(5, vo.getHire_date());
+			pstmt.setString(6, vo.getJob_id());
 			int r = pstmt.executeUpdate();
 			System.out.println(r + "건이 등록됨");
 		// 4. resultset(select라면 조회결과처리)
@@ -182,11 +187,10 @@ public void update(EmpVO vo) {
 		// 1. connect(연결)
 			conn = JdbcUtil.connect();
 		// 2. statement(구문)
-			String sql = "update employees set email = ?, phone_number = ? where employee_id = ?";
+			String sql = "UPDATE EMPLOYEES SET EMAIL = ? WHERE EMPLOYEE_ID = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getEmail());
-			pstmt.setString(2, vo.getPhone_number());
-			pstmt.setString(3, vo.getEmployee_id());
+			pstmt.setString(2, vo.getEmployee_id());
 			pstmt.executeUpdate();
 		
 		// 3. execute(실행)

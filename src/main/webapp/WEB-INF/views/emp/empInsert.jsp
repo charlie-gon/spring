@@ -39,7 +39,12 @@
 </script>
 </head>
 <body>
-<h3 id="top">사원등록</h3>
+<c:if test="${not empty empVo.employee_id }">
+<h3 id="top">사원 정보 수정</h3>
+</c:if>
+<c:if test="${empty empVo.employee_id }">
+<h3 id="top">사원 등록</h3>
+</c:if>
 
 <c:set var="url" value="empInsert" />
 <c:if test="${not empty empVo.employee_id }">
@@ -47,7 +52,7 @@
 </c:if>
 
 <form action="${url }" method="post" name="frm">
-	employee_id <input type="number" name="employee_id" <c:if test="${not empty empVo.employee_id }"> readonly="readonly"</c:if> ><br>
+	employee_id <input type="number" name="employee_id" value="${empVo.employee_id }"<c:if test="${not empty empVo.employee_id }"> readonly="readonly"</c:if> ><br>
 	<!-- http://localhost/jsp/EmpUpdate?employee_id=101  입력하여 구현 체크 -->
 	
 	first_name  <input name="first_name" value="${empVo.first_name }"><br>
@@ -73,12 +78,17 @@
 		${dept.department_name }
 	</c:forEach>
 	<br>
-	manager_id 
+	Search Employee
 	<input type="text" name="manager_id">
-	<input type="text" name="name">
+	<input type="text" name="manager_name">
 	<button type="button" onclick="window.open('empSearch', 'emp', 'width=400, height=400')">사원검색</button><br>	
 
+<c:if test="${empty empVo.employee_id }">
 	<button type="submit">등록</button>
+</c:if>
+<c:if test="${not empty empVo.employee_id }">
+	<button type="submit">수정</button>
+</c:if>
 	<button type="reset">초기화</button>
 </form>
 
