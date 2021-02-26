@@ -42,12 +42,6 @@ public class HomeController {
 		return "home";
 		
 		}
-	@Autowired EmpDAO dao; // EmpDAO에 @Component으로 Bean 등록 후 Autowired로 주입
 	
-	@RequestMapping("/ajaxEmpList")
-	@ResponseBody
-	public List<EmpVO> ajaxEmpList(){
-		return dao.selectList();
-	}
 	
 }

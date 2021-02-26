@@ -91,8 +91,12 @@ public class EmpDAO {
 				vo = new EmpVO();
 				vo.setEmployee_id(rs.getString(1));
 				vo.setFirst_name(rs.getString("first_name"));
+				vo.setLast_name(rs.getString("last_name"));
+				vo.setEmail(rs.getString("email"));
+				vo.setPhone_number(rs.getString("phone_number"));
 				vo.setDepartment_id(rs.getString("department_id"));
 				vo.setJob_id(rs.getString("job_id"));
+				vo.setDepartment_id(rs.getString("department_id"));
 			}
 		}catch(Exception e) {
 			e.printStackTrace(); // 세부 에러 메시지 출력
@@ -145,7 +149,7 @@ public class EmpDAO {
 		
 		try {
 		// 1. connect(연결)
-			JdbcUtil.connect();
+			conn = JdbcUtil.connect();
 		// 2. statement(구문)
 			String sql = "INSERT INTO EMPLOYEES "
 							+ "(EMPLOYEE_ID,"
@@ -176,8 +180,14 @@ public void update(EmpVO vo) {
 		
 		try {
 		// 1. connect(연결)
-			JdbcUtil.connect();
+			conn = JdbcUtil.connect();
 		// 2. statement(구문)
+			String sql = "update employees set email = ?, phone_number = ? where employee_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getEmail());
+			pstmt.setString(2, vo.getPhone_number());
+			pstmt.setString(3, vo.getEmployee_id());
+			pstmt.executeUpdate();
 		
 		// 3. execute(실행)
 		

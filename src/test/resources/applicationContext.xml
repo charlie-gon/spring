@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+<!-- 	<bean id="speaker" class="com.company.yedam.di.SonySpeaker"></bean>
+	<bean id="tv" class="com.company.yedam.di.LgTV" scope="prototype">
+		<constructor-arg name="speaker" ref="speaker"></constructor-arg>
+		세터 방식은 property 사용
+		<property name="speaker" ref="speaker"></property> 
+	</bean>  -->
+	
+	<!-- com.company로 시작하는 패키지 모두 인식하여 자동 등록 / 교재 p.130 -->
+	<context:component-scan base-package="com.company"></context:component-scan>
+
+</beans>

@@ -5,6 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class DeptDAO {
 	
 	Connection conn;
