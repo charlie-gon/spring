@@ -5,24 +5,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import org.springframework.stereotype.Component;
+
 
 /*
  * VO = Value Object = DTO(Data Transfer Object)
  * DAO = Data Access Object
  */
+@Component
 public class EmpDAO {
 
 	Connection conn;
 	PreparedStatement pstmt;
-	
-	// singleton_210224
-	private static EmpDAO instance;
-	public static EmpDAO getInstance() {
-		if(instance == null) {
-			instance = new EmpDAO();
-		}
-		return instance;
-	}
 	
 	// 전체 조회
 	public ArrayList<EmpVO> selectList(){

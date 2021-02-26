@@ -7,6 +7,7 @@ import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,10 +42,12 @@ public class HomeController {
 		return "home";
 		
 		}
+	@Autowired EmpDAO dao; // EmpDAO에 @Component으로 Bean 등록 후 Autowired로 주입
+	
 	@RequestMapping("/ajaxEmpList")
 	@ResponseBody
 	public List<EmpVO> ajaxEmpList(){
-		return EmpDAO.getInstance().selectList();
+		return dao.selectList();
 	}
 	
 }
