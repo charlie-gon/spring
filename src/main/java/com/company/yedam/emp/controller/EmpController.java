@@ -1,6 +1,7 @@
 package com.company.yedam.emp.controller;
 
 
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,6 @@ import com.company.yedam.emp.dao.JobDAO;
 
 @Controller // == @Component와 동일한 의미(컨테이너 bean으로 등록 / 컨트롤러 기능)
 public class EmpController {
-	
 	
 	// Autowired는 상단에 모다 놓는다
 	@Autowired EmpDAO empDAO;
@@ -39,8 +39,8 @@ public class EmpController {
 	}
 	
 	// 등록처리
-	@PostMapping("empInsert")
-	public String empInsertProc(EmpVO vo, HttpServletRequest request) {
+	@PostMapping("/empInsert")
+	public String empInsertProc(EmpVO vo) {
 		empDAO.insert(vo);
 		return "redirect:empInsert";
 	}
@@ -63,7 +63,13 @@ public class EmpController {
 		empDAO.update(vo);
 		return "redirect:empList";
 	}
+	
 	// 이메일체크
+	@RequestMapping("/emailCheck")
+	public String emailCheck(String email) {
+		empDAO.selectOneByEmail(email);
+		return "emp/empInsert";
+	}
 	
 	// 사원검색
 	@RequestMapping("/empSearch")

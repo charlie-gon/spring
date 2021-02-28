@@ -4,6 +4,7 @@ package com.company.yedam.emp.dao;
 import java.sql.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Component;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,7 +22,6 @@ public class EmpVO {
 	private String last_name;
 	private String email;
 	private String phone_number;
-	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	private Date hire_date;
 	private String job_id;
 	private String salary;

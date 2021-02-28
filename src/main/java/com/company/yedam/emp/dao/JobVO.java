@@ -1,7 +1,6 @@
 package com.company.yedam.emp.dao;
 
 
-import java.sql.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
