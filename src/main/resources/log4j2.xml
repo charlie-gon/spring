@@ -5,6 +5,8 @@
             <PatternLayout pattern="%d %5p %m%n" />
         </Console>
          <Console name="console_com" target="SYSTEM_OUT">
+         	<!-- PatternLayout 설정 참고 자료: https://velog.io/@bread_dd/Log4j-2-
+         		%EC%A0%9C%EB%8C%80%EB%A1%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0-%EA%B0%9C%EB%85%90 -->
             <PatternLayout pattern="%d{dd HH:mm} %5p [%c{-3}] %l %m%n" />
         </Console>
 

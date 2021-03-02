@@ -16,7 +16,7 @@
 			//var param = "email="+$('[name=email]').val();
 			param = {email: $('[name=email]').val()}
 			$.ajax({
-				url: "emailCheck?",
+				url: "EmailCheck?",
 				data: param, // 서버에 보낼 파라미터
 				//dataType: "xml",
 				dataType: "json", // 결과 type(String, json ..)

@@ -7,8 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-@Component
+@Repository //@Component
 public class DeptDAO {
 	
 	Connection conn;
